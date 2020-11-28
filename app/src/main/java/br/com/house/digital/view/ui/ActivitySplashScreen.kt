@@ -3,7 +3,6 @@ package br.com.house.digital.view.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import br.com.house.digital.R
 import br.com.house.digital.databinding.ActivitySplashScreenBinding
 
 class ActivitySplashScreen : AppCompatActivity() {
@@ -18,14 +17,14 @@ class ActivitySplashScreen : AppCompatActivity() {
     }
 
     private fun init() {
+        binding.imageViewLogoMarvel.alpha = 0f
+        binding.imageViewLogoMarvel.animate().setDuration(1250).alpha(1f)
+
         binding.imageViewBackground.alpha = 0f
         binding.imageViewBackground.animate().setDuration(1500).alpha(1f).withEndAction {
-            startActivity(Intent(this@ActivitySplashScreen, MainActivity::class.java))
+            startActivity(Intent(this@ActivitySplashScreen, ActivityLogin::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
         }
-
-        binding.imageViewLogoMarvel.alpha = 0f
-        binding.imageViewLogoMarvel.animate().setDuration(1250).alpha(1f)
     }
 }
