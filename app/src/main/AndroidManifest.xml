@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Marvel">
         <activity
+            android:name=".view.ui.ActivityRegister"
+            android:parentActivityName=".view.ui.ActivityLogin"
+            android:theme="@style/Theme.Marvel" />
+        <activity
             android:name=".view.ui.ActivityComicDetails"
             android:parentActivityName=".view.ui.ActivityComics"
             android:theme="@style/Theme.Marvel" />
@@ -32,7 +36,7 @@
         <activity
             android:name=".view.ui.ActivityComics"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Marvel"/>
+            android:theme="@style/Theme.Marvel" />
     </application>
 
 </manifest>
