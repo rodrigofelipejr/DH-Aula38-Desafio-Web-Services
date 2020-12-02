@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/red_500</item>
         <item name="colorPrimaryVariant">@color/red_700</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/red_500</item>
         <item name="colorSecondaryVariant">@color/red_700</item>
@@ -21,6 +23,12 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    /* appbar */
+
+    <style name="Theme.Marvel.AppBarLayout" parent="Theme.Marvel">
+        <item name="colorOnPrimary">@color/white</item>
     </style>
 
 </resources>
