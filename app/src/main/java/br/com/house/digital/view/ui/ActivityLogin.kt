@@ -13,13 +13,13 @@ class ActivityLogin : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setListeners()
-    }
-
-    private fun setListeners() {
         binding.buttonLogin.setOnClickListener {
             startActivity(Intent(this@ActivityLogin, ActivityComics::class.java))
             finish()
+        }
+
+        binding.textViewRegister.setOnClickListener {
+            startActivity(Intent(this@ActivityLogin, ActivityRegister::class.java))
         }
     }
 }
