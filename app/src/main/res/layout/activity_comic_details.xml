@@ -1,18 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_900"
     tools:context=".view.ui.ActivityComicDetails">
 
-    <include
-        android:id="@+id/include_config_toolbar"
-        layout="@layout/layout_toolbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="@dimen/padding_small"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/imageView_comic_cover"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@color/purple_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="175dp" />
+
+        <ImageView
+            android:id="@+id/imageView_thumbnail_comic"
+            android:layout_width="110dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/background_white"
+            android:contentDescription="@string/thumbnail"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_cover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_cover"
+            tools:src="@drawable/thumbnail" />
+
+        <TextView
+            android:id="@+id/textView_comic_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:maxLines="3"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView_thumbnail_comic"
+            tools:text="Marvel Visionaries: Stan Lee (Trade Paperback)" />
+
+        <TextView
+            android:id="@+id/textView_comic_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:maxLines="100"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_comic_title"
+            tools:text="Collects Amazing Spider-Man (1963) #203-212, Annual (1964) #14. Peter Parker has always had the worst luck, but Spider-Man is a hit with the ladies in his latest round of adventures! The Black Cat is back, and her love/hate relationship with Spidey is heating up! Dazzler disco-dances with our hero in an early appearance not to be missed! But she’s not the only mutant caught in Spidey’s web as Mesmero returns — courtesy of writer Dennis O’Neil! And Spidey history is made with the debut of an all-time-great Spider-Man artist: John Romita Jr.!" />
+
+        <TextView
+            android:id="@+id/textView_comic_published_fixed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="Published:"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_comic_description" />
+
+        <TextView
+            android:id="@+id/textView_comic_published"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_tiny"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/textView_comic_published_fixed"
+            app:layout_constraintStart_toEndOf="@id/textView_comic_published_fixed"
+            app:layout_constraintTop_toTopOf="@id/textView_comic_published_fixed"
+            tools:text="April 20, 2014" />
+
+        <TextView
+            android:id="@+id/textView_comic_price_fixed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:text="Price:"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_comic_published_fixed" />
+
+        <TextView
+            android:id="@+id/textView_comic_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_tiny"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/textView_comic_price_fixed"
+            app:layout_constraintStart_toEndOf="@id/textView_comic_price_fixed"
+            app:layout_constraintTop_toTopOf="@id/textView_comic_price_fixed"
+            tools:text="$ 5,99" />
+
+        <TextView
+            android:id="@+id/textView_comic_pages_fixed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:text="Pages:"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_comic_price_fixed" />
+
+        <TextView
+            android:id="@+id/textView_comic_pages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_tiny"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/textView_comic_pages_fixed"
+            app:layout_constraintStart_toEndOf="@id/textView_comic_pages_fixed"
+            app:layout_constraintTop_toTopOf="@id/textView_comic_pages_fixed"
+            tools:text="38" />
+
+        <include
+            android:id="@+id/include_config_toolbar"
+            layout="@layout/layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

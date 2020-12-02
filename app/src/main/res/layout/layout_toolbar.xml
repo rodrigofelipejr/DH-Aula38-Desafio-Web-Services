@@ -10,6 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/imageView_logo"
             android:layout_width="90dp"
             android:layout_height="35dp"
             android:contentDescription="@string/marvel"

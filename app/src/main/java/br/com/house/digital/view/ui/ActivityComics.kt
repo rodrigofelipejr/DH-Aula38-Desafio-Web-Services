@@ -3,11 +3,13 @@ package br.com.house.digital.view.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.house.digital.databinding.ActivityComicsBinding
+import br.com.house.digital.model.Comic
 import br.com.house.digital.service.repository
 import br.com.house.digital.view.adapter.AdapterComics
 import br.com.house.digital.viewmodel.ComicsViewModel
@@ -16,6 +18,7 @@ class ActivityComics : AppCompatActivity(), AdapterComics.IOnClickListenerComic 
     private lateinit var binding: ActivityComicsBinding
     lateinit var adapterComics: AdapterComics
     lateinit var gridLayoutManager: GridLayoutManager
+    private var listComics: ArrayList<Comic> = arrayListOf()
 
     private val viewModel by viewModels<ComicsViewModel> {
         object : ViewModelProvider.Factory {
@@ -32,11 +35,13 @@ class ActivityComics : AppCompatActivity(), AdapterComics.IOnClickListenerComic 
 
         adapterComics = AdapterComics(this)
         gridLayoutManager = GridLayoutManager(this, 3)
+
         binding.recyclerViewComics.adapter = adapterComics
         binding.recyclerViewComics.layoutManager = gridLayoutManager
         binding.recyclerViewComics.hasFixedSize()
 
         viewModel.listComics.observe(this) {
+            listComics.addAll(it)
             adapterComics.addList(it)
         }
 
@@ -45,12 +50,9 @@ class ActivityComics : AppCompatActivity(), AdapterComics.IOnClickListenerComic 
         //setScroller()
     }
 
-    override fun onClickListenerComic(item: Int) {
-        //TODO criar lista local?
-        //val comic = desenvolvedores.get(item)
-        //intent.putExtra("COMIC_EXTRA", comic)
-
+    override fun onClickListenerComic(index: Int) {
         val intent = Intent(this, ActivityComicDetails::class.java)
+        intent.putExtra("COMIC_ID", listComics[index].id)
         startActivity(intent)
     }
 

@@ -22,17 +22,17 @@
         <activity
             android:name=".view.ui.ActivitySplashScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Marvel.Fullscreen"/>
-        <activity
-            android:name=".view.ui.ActivityComics"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Marvel">
+            android:theme="@style/Theme.Marvel.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.ui.ActivityComics"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Marvel"/>
     </application>
 
 </manifest>
