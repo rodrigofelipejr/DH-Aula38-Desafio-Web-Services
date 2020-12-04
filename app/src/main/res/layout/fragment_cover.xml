@@ -17,6 +17,7 @@
             style="@style/Theme.Marvel.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:iconTint="@color/white"
             android:layout_marginLeft="@dimen/margin_tiny"
             android:layout_marginTop="@dimen/margin_tiny"
             app:icon="@drawable/ic_close"
