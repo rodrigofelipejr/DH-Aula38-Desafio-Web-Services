@@ -109,6 +109,15 @@
             app:layout_constraintTop_toTopOf="@id/linearLayout_register"
             app:layout_constraintVertical_bias="1.0" />
 
+        <include
+            android:id="@+id/include_config_toolbar"
+            layout="@layout/layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

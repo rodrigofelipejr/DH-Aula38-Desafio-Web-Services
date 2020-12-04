@@ -1,8 +1,5 @@
 package br.com.house.digital.view.ui
 
-import android.animation.ObjectAnimator
-import android.animation.StateListAnimator
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,19 +11,18 @@ import androidx.lifecycle.ViewModelProvider
 import br.com.house.digital.R
 import br.com.house.digital.databinding.ActivityComicDetailsBinding
 import br.com.house.digital.model.Comic
-import br.com.house.digital.model.Date
 import br.com.house.digital.service.repository
 import br.com.house.digital.viewmodel.ComicDetailsViewModel
-import br.com.house.digital.viewmodel.ComicsViewModel
 import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 
 class ActivityComicDetails : AppCompatActivity() {
     private lateinit var binding: ActivityComicDetailsBinding
     private lateinit var comic: Comic
     private var idComic: Int = 0
+
 
     private val viewModel by viewModels<ComicDetailsViewModel> {
         object : ViewModelProvider.Factory {
@@ -49,14 +45,41 @@ class ActivityComicDetails : AppCompatActivity() {
             Log.e("ActivityComicDetails", exception.toString())
         }
 
+        viewModel.getComicId(idComic)
+
+        initToolbar()
+        pupulateFields()
+        setListeners()
+    }
+
+    private fun initToolbar() {
+        setSupportActionBar(binding.includeConfigToolbar.materialToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        setTitle("")
+        binding.includeConfigToolbar.imageViewLogo.visibility = View.GONE;
+        binding.includeConfigToolbar.materialAppBarLayout.setBackgroundColor(
+            ContextCompat.getColor(
+                applicationContext,
+                R.color.transparent
+            )
+        )
+
+        binding.includeConfigToolbar.materialAppBarLayout.targetElevation = 0f
+    }
+
+    private fun pupulateFields() {
         viewModel.comic.observe(this) {
             comic = it
 
-            binding.textViewComicTitle.text = comic.title
+            binding.textViewComicTitle.text =
+                if (comic.title != null) comic.title else "No description"
+
             binding.textViewComicDescription.text =
                 if (comic.description != null) comic.description else "No description"
 
-            binding.textViewComicPages.text = comic.pageCount.toString()
+            binding.textViewComicPages.text =
+                if (comic.pageCount != null) comic.pageCount.toString() else "No description"
 
             val date = (comic.dates.find { item -> item.type == "focDate" })?.date.toString()
             if (date.isNotEmpty()) {
@@ -64,6 +87,8 @@ class ActivityComicDetails : AppCompatActivity() {
                     SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX").parse(date)
                 val dateFormat = SimpleDateFormat("MMMM dd, yyyy", Locale.US)
                 binding.textViewComicPublished.text = dateFormat.format(dateTmp)
+            } else {
+                binding.textViewComicPublished.text = "No date"
             }
 
             val price = (comic.prices.find { item -> item.type == "printPrice" })?.price.toString()
@@ -82,31 +107,18 @@ class ActivityComicDetails : AppCompatActivity() {
                 .centerCrop()
                 .into(binding.imageViewThumbnailComic)
         }
-        viewModel.getComicId(idComic)
-
-        initToolbar()
     }
 
-    private fun initToolbar() {
-        setSupportActionBar(binding.includeConfigToolbar.materialToolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    private fun setListeners() {
+        binding.imageViewThumbnailComic.setOnClickListener {
+            binding.frameLayoutCover.visibility = View.VISIBLE
 
-        setTitle("")
-        binding.includeConfigToolbar.imageViewLogo.visibility = View.GONE;
-        binding.includeConfigToolbar.materialAppBarLayout.setBackgroundColor(
-            ContextCompat.getColor(
-                applicationContext,
-                R.color.transparent
-            )
-        )
-
-        binding.includeConfigToolbar.materialToolbar.setNavigationOnClickListener {
-            val intent = Intent(applicationContext, ActivityComics::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            startActivity(intent)
-            finish()
+            val fragmentCover = FragmentCover.newInstance(comic.thumbnail.getUrl())
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.frameLayout_cover, fragmentCover)
+                addToBackStack(null)
+                commit()
+            }
         }
-
-        binding.includeConfigToolbar.materialAppBarLayout.targetElevation = 0f
     }
 }
