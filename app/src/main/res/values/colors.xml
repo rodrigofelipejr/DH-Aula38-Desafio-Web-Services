@@ -14,4 +14,5 @@
     <color name="red_700">#FFbb1c1f</color>
     <color name="blue_900">#FF00162c</color>
     <color name="transparent">@android:color/transparent</color>
+    <color name="lime_1000">#FFb7eb34</color>
 </resources>

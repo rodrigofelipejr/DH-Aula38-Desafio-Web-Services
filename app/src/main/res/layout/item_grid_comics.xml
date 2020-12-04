@@ -11,7 +11,7 @@
         android:id="@+id/imageView_thumbnail_comic"
         android:layout_width="110dp"
         android:layout_height="160dp"
-        android:background="@drawable/background_white"
+        android:foreground="@drawable/border_white"
         android:contentDescription="@string/thumbnail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
