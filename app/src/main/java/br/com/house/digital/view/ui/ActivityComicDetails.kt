@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import br.com.house.digital.R
 import br.com.house.digital.databinding.ActivityComicDetailsBinding
 import br.com.house.digital.model.Comic
@@ -97,14 +98,21 @@ class ActivityComicDetails : AppCompatActivity() {
             val coverURL =
                 if (comic.images.size > 0) comic.images[0].getUrl() else comic.thumbnail.getUrl();
 
+            val circularProgressDrawable = CircularProgressDrawable(this)
+            circularProgressDrawable.strokeWidth = 5f
+            circularProgressDrawable.centerRadius = 30f
+            circularProgressDrawable.start()
+
             Glide.with(this)
                 .load(coverURL)
+                .placeholder(circularProgressDrawable)
                 .centerCrop()
                 .into(binding.imageViewComicCover)
 
             Glide.with(this)
                 .load(comic.thumbnail.getUrl())
                 .centerCrop()
+                .placeholder(circularProgressDrawable)
                 .into(binding.imageViewThumbnailComic)
         }
     }

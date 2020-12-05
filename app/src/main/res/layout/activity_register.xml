@@ -9,22 +9,29 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@color/blue_900"
         tools:context=".view.ui.ActivityRegister">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_appBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="?android:attr/actionBarSize" />
 
         <LinearLayout
             android:id="@+id/linearLayout_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_small"
+            android:layout_marginTop="50dp"
             android:background="@drawable/round_background_red"
             android:orientation="vertical"
-            android:paddingTop="68dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/guideline_appBar">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -104,7 +111,6 @@
             android:elevation="1dp"
             app:layout_constraintBottom_toTopOf="@id/linearLayout_register"
             app:layout_constraintEnd_toEndOf="@id/linearLayout_register"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@id/linearLayout_register"
             app:layout_constraintTop_toTopOf="@id/linearLayout_register"
             app:layout_constraintVertical_bias="1.0" />

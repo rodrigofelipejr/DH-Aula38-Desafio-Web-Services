@@ -1,7 +1,7 @@
 package br.com.house.digital.helper
 
 object settings {
-    val ts: String = "81273981279"
-    val apikey: String =  "6eb7e8896ec5850c52515a8a23ee97f0"
-    val hash : String = "ec5850c52515a8a23e"
+    val ts: String = "1606871104738"
+    val apikey: String =  "a9df08d8d5c9fe572054b0208ab85073"
+    val hash : String = "fd281359a74f14822e3aa4a670deb161"
 }

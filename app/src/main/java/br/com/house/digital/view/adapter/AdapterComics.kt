@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import br.com.house.digital.R
 import br.com.house.digital.model.Comic
 import com.bumptech.glide.Glide
@@ -30,8 +31,14 @@ class AdapterComics(
 
         holder.textViewThumbnail.text = "#${item.id}"
 
+        val circularProgressDrawable = CircularProgressDrawable(holder.imageViewThumbnail.context)
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+
         Glide.with(holder.itemView.context).asBitmap()
             .load(item.thumbnail.getUrl())
+            .placeholder(circularProgressDrawable)
             .into(holder.imageViewThumbnail)
     }
 
